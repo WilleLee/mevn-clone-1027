@@ -8,6 +8,6 @@ apiRoute.get("/", API.fetchAllPosts);
 apiRoute.post("/create", imageUploader.single("image"), API.createPost);
 apiRoute.get("/:id", API.fetchPostByID);
 apiRoute.post("/:id/update", imageUploader.single("image"), API.updatePost);
-apiRoute.get("/:id/delete", API.deletePost);
+apiRoute.delete("/:id/delete", API.deletePost);
 
 export default apiRoute;

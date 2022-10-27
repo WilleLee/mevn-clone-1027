@@ -80,7 +80,21 @@ class API {
    * @returns
    */
   static async deletePost(req, res) {
-    return res.send("delete a post");
+    const { id } = req.params;
+    try {
+      const result = await Post.findByIdAndDelete(id);
+      console.log(result);
+      if (result.image) {
+        try {
+          fs.unlinkSync("./uploads/images/" + result.image);
+        } catch (err) {
+          console.log(err.message);
+        }
+      }
+      return res.status(200).json({ message: "✅ SUCCESSFULLY DELETED" });
+    } catch (err) {
+      return res.status(400).json({ message: err.message });
+    }
   }
 }
 
