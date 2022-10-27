@@ -6,8 +6,10 @@ const apiRoute = express.Router();
 
 apiRoute.get("/", API.fetchAllPosts);
 apiRoute.post("/create", imageUploader.single("image"), API.createPost);
-apiRoute.get("/:id", API.fetchPostByID);
-apiRoute.post("/:id/update", imageUploader.single("image"), API.updatePost);
-apiRoute.delete("/:id/delete", API.deletePost);
+apiRoute
+  .route("/:id")
+  .get(API.fetchPostByID)
+  .put(imageUploader.single("image"), API.updatePost)
+  .delete(API.deletePost);
 
 export default apiRoute;

@@ -39,6 +39,7 @@ class API {
    */
   static async createPost(req, res) {
     const post = req.body;
+    console.log(req.file);
     const imagename = req.file.filename;
     post.image = imagename;
     try {
@@ -59,6 +60,7 @@ class API {
     const updatedPost = req.body;
     try {
       const post = await Post.findById(id);
+      console.log(post);
       let imagename;
       if (req.file) {
         imagename = req.file.filename;
