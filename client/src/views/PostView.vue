@@ -4,10 +4,7 @@
       <v-row no-gutters>
         <v-col sm="10" class="pa4 mx-auto">
           <v-card class="pa2">
-            <v-img
-              :src="`/static/images/${post.image}`"
-              v-if="post.image"
-            ></v-img>
+            <v-img :src="post.image" v-if="post.image"></v-img>
             <v-card-actions class="pb-0">
               <v-row class="mt-1 mx-1">
                 <v-col sm="2">

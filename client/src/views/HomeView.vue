@@ -13,11 +13,7 @@
     <v-row>
       <v-col sm="4" class="pa-3" :key="post._id" v-for="post in posts">
         <v-card class="pa-1" :to="{ name: 'post', params: { id: post._id } }">
-          <v-img
-            height="250"
-            :src="`/static/images/${post.image}`"
-            v-if="post.image"
-          ></v-img>
+          <v-img height="250" :src="post.image" v-if="post.image"></v-img>
           <v-btn class="ml-4 mt-3" small outlined color="indigo">
             {{ post.category }}
           </v-btn>

@@ -37,7 +37,7 @@
               label="Select Image"
             ></v-file-input>
             <v-img
-              :src="`/static/images/${post.image}`"
+              :src="post.image"
               width="120"
               v-if="post.image && !image.name"
             />

@@ -40,8 +40,8 @@ class API {
   static async createPost(req, res) {
     const post = req.body;
     console.log(req.file);
-    const imagename = req.file.filename;
-    post.image = imagename;
+    const { location } = req.file;
+    post.image = location;
     try {
       await Post.create(post);
       return res.status(201).json({ message: "✅ SUCCESSFULLY CREATED" });
@@ -61,14 +61,13 @@ class API {
     try {
       const post = await Post.findById(id);
       console.log(post);
-      let imagename;
+      let image;
       if (req.file) {
-        imagename = req.file.filename;
-        fs.unlinkSync("./uploads/images/" + post.image);
+        image = req.file.filename;
       } else {
-        imagename = post.image;
+        image = post.image;
       }
-      updatedPost.image = imagename;
+      updatedPost.image = image;
       await Post.findByIdAndUpdate(id, updatedPost);
       return res.status(200).json({ message: "✅ SUCCESSFULLY UPDATED" });
     } catch (err) {
