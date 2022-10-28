@@ -67,9 +67,7 @@ export default {
   },
   methods: {
     selectFile(event) {
-      console.log(event[0]);
       this.image = event[0];
-      console.log(this.image);
     },
     async updateForm() {
       const formData = new FormData();

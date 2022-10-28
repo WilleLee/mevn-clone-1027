@@ -40,7 +40,6 @@ class API {
    */
   static async createPost(req, res) {
     const post = req.body;
-    console.log(req.file);
     const image = process.env.S3_BUCKET_URI + req.file.key;
     post.image = image;
     try {
@@ -61,7 +60,6 @@ class API {
     const updatedPost = req.body;
     try {
       const post = await Post.findById(id);
-      console.log(post);
       let image;
       if (req.file) {
         image = process.env.S3_BUCKET_URI + req.file.key;
@@ -85,7 +83,6 @@ class API {
     const { id } = req.params;
     try {
       const result = await Post.findByIdAndDelete(id);
-      console.log(result);
       if (result.image) {
         try {
           fs.unlinkSync("./uploads/images/" + result.image);
