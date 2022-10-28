@@ -19,7 +19,7 @@ const s3ImageUploader = multerS3({
   bucket: s3Params.bucketName,
   acl: "public-read",
   key: function (req, file, cb) {
-    cb(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
+    cb(null, file.fieldname + "_" + Date.now());
   },
 });
 /*
