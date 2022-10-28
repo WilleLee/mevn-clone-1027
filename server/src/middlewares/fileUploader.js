@@ -8,7 +8,6 @@ const s3Params = {
   id: process.env.S3_KEY_ID,
   secret: process.env.S3_SECRET,
   region: "ap-northeast-2",
-  bucketName: "mevn-clone-1027",
 };
 const s3 = new S3Client({
   credentials: { accessKeyId: s3Params.id, secretAccessKey: s3Params.secret },
@@ -16,22 +15,10 @@ const s3 = new S3Client({
 });
 const s3ImageUploader = multerS3({
   s3,
-  bucket: s3Params.bucketName,
+  bucket: "mevn-clone-1027",
   acl: "public-read",
-  key: function (req, file, cb) {
-    cb(null, file.fieldname + "_" + Date.now());
-  },
 });
-/*
-const imageStorage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, s3ImageUploader);
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
-  },
-});
-*/
+
 export const imageUploader = multer({
   limits: 500000,
   storage: s3ImageUploader,

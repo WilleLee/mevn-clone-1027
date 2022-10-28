@@ -1,5 +1,6 @@
 import Post from "../models/Post";
 import fs from "fs";
+import * as dotenv from "dotenv";
 
 class API {
   /**
@@ -40,8 +41,8 @@ class API {
   static async createPost(req, res) {
     const post = req.body;
     console.log(req.file);
-    const { location } = req.file;
-    post.image = location;
+    const image = process.env.S3_BUCKET_URI + req.file.key;
+    post.image = image;
     try {
       await Post.create(post);
       return res.status(201).json({ message: "✅ SUCCESSFULLY CREATED" });
@@ -63,7 +64,7 @@ class API {
       console.log(post);
       let image;
       if (req.file) {
-        image = req.file.filename;
+        image = process.env.S3_BUCKET_URI + req.file.key;
       } else {
         image = post.image;
       }
