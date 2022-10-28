@@ -1,0 +1,22 @@
+{
+  "name": "mevn-clone-1027",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:client": "cd client && npm ci && npm run build && cd ..",
+    "build:server": "cd server && npm ci --dev && npm run build && cd ..",
+    "heroku-prebuild": "npm run build:client && npm run build:server && mv ./client/dist ./server/dist",
+    "start": "cd server && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WilleLee/mevn-clone-1027.git"
+  },
+  "author": "Wille Lee <1992season@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WilleLee/mevn-clone-1027/issues"
+  },
+  "homepage": "https://github.com/WilleLee/mevn-clone-1027#readme"
+}

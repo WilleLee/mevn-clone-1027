@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev:server": "nodemon"
+    "start": "node build/app.js",
+    "build": "babel src -d build",
+    "dev": "nodemon"
   },
   "author": "Wille Lee <1992season@gmail.com>",
   "license": "ISC",

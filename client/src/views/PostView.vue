@@ -16,8 +16,15 @@
                   </v-btn>
                 </v-col>
                 <v-col sm="10" class="d-flex justify-end">
-                  <v-btn color="success" text>Edit</v-btn>
-                  <v-btn color="red" text>Delete</v-btn>
+                  <v-btn
+                    color="success"
+                    text
+                    :to="{ name: 'editPost', params: { id: post._id } }"
+                    >Edit</v-btn
+                  >
+                  <v-btn color="red" text @click="removePost(post._id)"
+                    >Delete</v-btn
+                  >
                 </v-col>
               </v-row>
             </v-card-actions>
@@ -46,6 +53,15 @@ export default {
   async created() {
     const response = await API.getPostByID(this.$route.params.id);
     this.post = response;
+  },
+  methods: {
+    async removePost(id) {
+      const response = await API.deletePost(id);
+      this.$router.push({
+        name: "home",
+        params: { message: response.message },
+      });
+    },
   },
 };
 </script>

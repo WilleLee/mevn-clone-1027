@@ -18,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/static", express.static("uploads"));
 app.use(morgan("dev"));
+app.use(express.static("dist"));
 
 // db
 try {
@@ -27,6 +28,9 @@ try {
   console.log(`❗️ERROR OCCURRED WHILE CONNECTING TO THE DATABSE : ${err}`);
 }
 
+app.get("/", (req, res) => {
+  return res.sendFile(__dirname + "/dist/index.html");
+});
 app.use("/api", apiRoute);
 
 // start server
